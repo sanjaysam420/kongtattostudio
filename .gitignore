@@ -1,0 +1,6 @@
+node_modules/
+kong-tattoo/node_modules/
+kong-tattoo/build/
+kong-tattoo/.env
+.DS_Store
+*.log
