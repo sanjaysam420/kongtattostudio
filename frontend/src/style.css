@@ -1055,17 +1055,28 @@ footer {
 @media (max-width: 768px) {
   /* Navbar */
   .top-navbar {
-    height: 80px;
-    padding: 0 15px;
+    height: 75px;
+    padding: 0 10px;
+    gap: 10px;
+  }
+  .logo-container {
+    position: static;
+    transform: none;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
   }
   .logo-center {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     letter-spacing: 1px;
     text-align: center;
+    white-space: nowrap;
   }
   .btn-nav-book {
-    padding: 8px 15px;
-    font-size: 0.9rem;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    white-space: nowrap;
   }
 
   /* Hero */
@@ -1078,10 +1089,10 @@ footer {
     padding: 40px 20px;
   }
   #gallery h2, #artists h2, #about h2 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
   #about p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   /* Gallery Grid */
@@ -1089,7 +1100,7 @@ footer {
     grid-template-columns: 1fr;
     gap: 30px;
     margin: 0;
-    padding: 0 20px;
+    padding: 0 15px;
   }
   .gallery-grid-item img {
     height: 250px;
@@ -1097,20 +1108,20 @@ footer {
 
   /* Artists */
   #artists.section {
-    width: 90%;
-    padding: 30px;
-    margin: 40px auto;
+    width: 95%;
+    padding: 25px;
+    margin: 30px auto;
   }
   .cards {
-    gap: 30px;
+    gap: 25px;
   }
 
   /* Sidebar */
   .sidebar {
-    width: 280px;
+    width: 260px;
   }
   .close-sidebar {
-    margin-left: 180px;
+    margin-left: 160px;
   }
 
   /* Dashboard */
@@ -1118,70 +1129,85 @@ footer {
     flex-direction: column;
   }
   .dashboard-content {
-    padding: 30px 20px;
+    padding: 25px 15px;
   }
   .artist-dashboard-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
   .artist-booking-card {
     flex-direction: column;
     align-items: flex-start;
-    gap: 15px;
+    gap: 12px;
+    padding: 15px;
   }
   .artist-booking-actions {
     padding-left: 0;
     width: 100%;
+    margin-top: 10px;
   }
   .artist-booking-actions button {
     flex: 1;
+    padding: 8px;
+    font-size: 0.9rem;
   }
 
   /* Auth Forms */
   .auth-form-container {
-    padding: 40px 20px;
+    padding: 30px 15px;
     width: 95%;
+    margin: 60px auto;
   }
   .auth-form-container h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   /* Customer Dashboard */
   .customer-section {
-    margin-top: 40px;
-    padding: 20px;
+    margin-top: 30px;
+    padding: 15px;
     width: 100%;
     box-sizing: border-box;
   }
   .appointment-buttons {
     flex-direction: column;
+    gap: 10px;
   }
 
   /* Header adjustments for Dashboard */
   .dashboard-header {
     height: auto;
-    padding: 20px;
+    padding: 15px;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     text-align: center;
   }
   .dashboard-header-center h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   .dashboard-header-left {
     display: none;
+  }
+  .btn-dashboard-back {
+    padding: 8px 20px;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
   .logo-center {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
   }
   .btn-nav-book {
-    padding: 6px 12px;
-    font-size: 0.8rem;
+    padding: 5px 10px;
+    font-size: 0.75rem;
   }
   
   .dashboard-header-center h1 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+  }
+  
+  .top-navbar {
+    height: 65px;
   }
 }
