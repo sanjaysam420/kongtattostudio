@@ -6,7 +6,6 @@ import PublicViews from "./components/PublicViews";
 import AuthForms from "./components/AuthForms";
 import CustomerDashboard from "./components/CustomerDashboard";
 import ArtistDashboard from "./components/ArtistDashboard";
-import Bubbles from "./components/Bubbles";
 
 function App() {
   const [view, setView] = useState("home"); // "home", "login", "signup", "dashboard", "forgot"
@@ -50,7 +49,6 @@ function App() {
 
   return (
     <div className="app-container">
-      <Bubbles />
       {view !== "dashboard" && (
         <>
           <Navbar onToggleSidebar={toggleSidebar} setView={setView} scrollToBooking={scrollToBooking} currentUser={currentUser} setCurrentUser={setCurrentUser} />
