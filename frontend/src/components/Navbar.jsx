@@ -11,7 +11,7 @@ const Icon = ({ name }) => {
 export default function Navbar({ onToggleSidebar, setView, scrollToBooking, currentUser, setCurrentUser }) {
   const handleLogout = async () => {
     try {
-      const baseUrl = `http://${window.location.hostname}:5000`;
+      const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : '/_/backend';
       await fetch(`${baseUrl}/api/logout`, { method: "POST" });
     } catch (e) {
       console.error(e);

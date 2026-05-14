@@ -19,7 +19,8 @@ const Icon = ({ name }) => {
 export default function Sidebar({ isOpen, onClose, currentUser, setCurrentUser, setView, scrollToBooking }) {
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:5000/api/logout", { method: "POST" });
+      const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : '/_/backend';
+      await fetch(`${baseUrl}/api/logout`, { method: "POST" });
     } catch (e) {
       console.error(e);
     }
