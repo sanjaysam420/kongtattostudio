@@ -1,5 +1,6 @@
 import json
 import os
+import time
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
@@ -23,7 +24,20 @@ def init_db():
     except Exception as e:
         print(f"Error initializing DB: {e}")
 
+def prune_users():
+    try:
+        if not os.path.exists(USERS_FILE): return
+        with open(USERS_FILE, 'r') as f:
+            users = json.load(f)
+        cutoff = time.time() - (30 * 24 * 60 * 60)
+        filtered = [u for u in users if u.get('last_activity', time.time()) > cutoff]
+        if len(filtered) != len(users):
+            with open(USERS_FILE, 'w') as f:
+                json.dump(filtered, f, indent=4)
+    except: pass
+
 init_db()
+prune_users()
 
 @app.route('/api/book', methods=['POST'])
 def book_appointment():
@@ -95,7 +109,11 @@ def signup():
             if u.get('username') == username:
                  return jsonify({"error": "Username already exists"}), 400
                  
-        users.append({"username": username, "password": password})
+        users.append({
+            "username": username, 
+            "password": password, 
+            "last_activity": time.time()
+        })
         with open(USERS_FILE, 'w') as f:
              json.dump(users, f, indent=4)
              
@@ -119,6 +137,9 @@ def login():
              
         for u in users:
              if u.get('username') == username and u.get('password') == password:
+                 u['last_activity'] = time.time()
+                 with open(USERS_FILE, 'w') as f:
+                     json.dump(users, f, indent=4)
                  return jsonify({"success": True, "role": "customer", "username": username})
                  
         return jsonify({"error": "Invalid credentials"}), 401
