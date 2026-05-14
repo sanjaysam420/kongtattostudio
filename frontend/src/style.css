@@ -1164,6 +1164,8 @@ footer {
   }
   .auth-form-container h2 {
     font-size: 1.8rem;
+    margin-top: 10px;
+    margin-bottom: 25px;
   }
 
   /* Customer Dashboard */
