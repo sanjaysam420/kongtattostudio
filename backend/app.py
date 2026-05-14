@@ -7,16 +7,23 @@ app = Flask(__name__)
 # Enable CORS for the React app on port 3000
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-BOOKINGS_FILE = 'bookings.json'
-USERS_FILE = 'users.json'
+# Use /tmp for file storage on Vercel since the deployment filesystem is read-only
+IS_VERCEL = os.environ.get('VERCEL') == '1'
+BOOKINGS_FILE = '/tmp/bookings.json' if IS_VERCEL else 'bookings.json'
+USERS_FILE = '/tmp/users.json' if IS_VERCEL else 'users.json'
 
 def init_db():
-    if not os.path.exists(BOOKINGS_FILE):
-        with open(BOOKINGS_FILE, 'w') as f:
-            json.dump([], f)
-    if not os.path.exists(USERS_FILE):
-        with open(USERS_FILE, 'w') as f:
-            json.dump([], f)
+    try:
+        if not os.path.exists(BOOKINGS_FILE):
+            with open(BOOKINGS_FILE, 'w') as f:
+                json.dump([], f)
+        if not os.path.exists(USERS_FILE):
+            with open(USERS_FILE, 'w') as f:
+                json.dump([], f)
+    except Exception as e:
+        print(f"Error initializing DB: {e}")
+
+init_db()
 
 @app.route('/api/book', methods=['POST'])
 def book_appointment():
@@ -235,6 +242,5 @@ def get_about():
     })
 
 if __name__ == '__main__':
-    init_db()
     print("Backend server starting on http://localhost:5000")
     app.run(debug=True, host='0.0.0.0', port=5000)
