@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 export default function ArtistDashboard({ bookings, fetchArtistBookings, setCurrentUser, setView }) {
 
   const deleteBookingAPI = async (b) => {

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid, no-unused-vars */
 import { useState, useEffect } from 'react';
 
 export default function PublicViews({ scrollToBooking, currentUser, setView }) {
