@@ -19,7 +19,7 @@ export default function CustomerDashboard({ currentUser, bookings, fetchArtistBo
   const handleDeleteBooking = async (booking) => {
     if (!window.confirm(`Delete appointment on ${booking.date} at ${booking.time}?`)) return;
     try {
-      const baseUrl = `http://${window.location.hostname}:5000`;
+      const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : '/_/backend';
       const response = await fetch(`${baseUrl}/api/bookings`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
@@ -42,7 +42,7 @@ export default function CustomerDashboard({ currentUser, bookings, fetchArtistBo
     e.preventDefault();
     setMessage(null); setErrorMsg(null);
     try {
-      const baseUrl = `http://${window.location.hostname}:5000`;
+      const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : '/_/backend';
       let response;
 
       if (editingBooking) {

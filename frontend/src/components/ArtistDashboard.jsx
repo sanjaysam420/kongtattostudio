@@ -3,7 +3,7 @@ export default function ArtistDashboard({ bookings, fetchArtistBookings, setCurr
 
   const deleteBookingAPI = async (b) => {
     try {
-      const baseUrl = `http://${window.location.hostname}:5000`;
+      const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : '/_/backend';
       const response = await fetch(`${baseUrl}/api/bookings`, {
         method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify(b),
       });
@@ -14,7 +14,7 @@ export default function ArtistDashboard({ bookings, fetchArtistBookings, setCurr
 
   const cancelBookingAPI = async (b) => {
     try {
-      const baseUrl = `http://${window.location.hostname}:5000`;
+      const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : '/_/backend';
       const response = await fetch(`${baseUrl}/api/bookings/cancel`, {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(b),
       });
@@ -38,7 +38,7 @@ export default function ArtistDashboard({ bookings, fetchArtistBookings, setCurr
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      const baseUrl = `http://${window.location.hostname}:5000`;
+      const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : '/_/backend';
       await fetch(`${baseUrl}/api/logout`, { method: "POST" });
     } catch (err) {
       console.error(err);

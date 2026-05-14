@@ -36,7 +36,7 @@ export default function AuthForms({ view, setView, setCurrentUser }) {
     e.preventDefault();
     setAuthMsg(null); setAuthError(null);
     try {
-      const baseUrl = `http://${window.location.hostname}:5000`;
+      const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : '/_/backend';
       const response = await fetch(`${baseUrl}/api/signup`, {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(authForm),
       });
@@ -54,7 +54,7 @@ export default function AuthForms({ view, setView, setCurrentUser }) {
     e.preventDefault();
     setAuthMsg(null); setAuthError(null);
     try {
-      const baseUrl = `http://${window.location.hostname}:5000`;
+      const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : '/_/backend';
       const response = await fetch(`${baseUrl}/api/login`, {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(authForm),
       });
@@ -73,7 +73,7 @@ export default function AuthForms({ view, setView, setCurrentUser }) {
     setForgotMsg(null); setForgotError(null);
     if (forgotForm.password !== forgotForm.confirmPassword) return setForgotError("Passwords do not match");
     try {
-      const baseUrl = `http://${window.location.hostname}:5000`;
+      const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : '/_/backend';
       const response = await fetch(`${baseUrl}/api/reset-password`, {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(forgotForm),
       });

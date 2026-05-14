@@ -31,7 +31,7 @@ function App() {
 
   const fetchArtistBookings = async () => {
     try {
-      const baseUrl = `http://${window.location.hostname}:5000`;
+      const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : '/_/backend';
       const response = await fetch(`${baseUrl}/api/bookings`);
       const data = await response.json();
       if (response.ok) {
